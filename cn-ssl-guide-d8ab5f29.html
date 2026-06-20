@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欧博 · 信息索引与资料整理</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #faf9f7;
+      font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+      color: #2d2a24;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      margin-bottom: 3.5rem;
+      padding: 2.8rem 0 1.2rem;
+      border-bottom: 1px solid #d6d2cb;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b9288;
+      margin-bottom: 0.8rem;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      color: #1f1b16;
+      line-height: 1.2;
+    }
+    .hero h1 small {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 350;
+      color: #6f665b;
+      margin-top: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .hero .sub {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #5c544a;
+      max-width: 560px;
+    }
+
+    /* 正文窄栏 */
+    .content {
+      margin-top: 0.5rem;
+    }
+
+    .section {
+      margin-bottom: 2.8rem;
+    }
+    .section:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      font-weight: 420;
+      letter-spacing: -0.01em;
+      border-left: 3px solid #b7ada2;
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+      color: #2a251f;
+    }
+
+    .section p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #3b352e;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .inset-card {
+      background-color: #f3f0ec;
+      padding: 1.6rem 1.8rem;
+      border-radius: 12px;
+      margin: 1.8rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .inset-card p {
+      font-size: 0.95rem;
+    }
+
+    .inset-card .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      background: #ddd8d1;
+      color: #3f372f;
+      padding: 0.1rem 0.7rem;
+      border-radius: 30px;
+      margin-bottom: 0.7rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .link-sentence {
+      background: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid #e2dbd3;
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .link-sentence a {
+      color: #3f372f;
+      text-decoration: none;
+      border-bottom: 1px solid #b7ada2;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .link-sentence a:hover {
+      border-bottom-color: #8c7e6e;
+      color: #1a1510;
+    }
+
+    .faq-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 1.8rem;
+      margin: 1.8rem 0 0.8rem;
+    }
+    .faq-item {
+      border-top: 1px solid #e0dad3;
+      padding-top: 0.8rem;
+    }
+    .faq-item .q {
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+      color: #2a251f;
+    }
+    .faq-item .a {
+      font-size: 0.85rem;
+      color: #5c544a;
+    }
+
+    .footer-note {
+      margin-top: 4rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #d6d2cb;
+      font-size: 0.8rem;
+      color: #7d7368;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .footer-note a {
+      color: #5c544a;
+      text-decoration: none;
+      border-bottom: 1px solid #cbc3ba;
+    }
+    .footer-note a:hover {
+      border-bottom-color: #7d7368;
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 2rem 1.2rem 3rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .section h2 { font-size: 1.3rem; padding-left: 0.8rem; }
+      .faq-mini { grid-template-columns: 1fr; }
+      .inset-card { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 横幅 hero -->
+  <header class="hero">
+    <div class="hero-label">资料整理 · 索引专题</div>
+    <h1>
+      欧博
+      <small>从碎片到脉络，一份温和的汇集</small>
+    </h1>
+    <div class="sub">
+      不堆砌、不喧嚣，只把分散的信息梳理成可供翻阅的文本。这里是围绕「欧博」展开的轻索引。
+    </div>
+  </header>
+
+  <!-- 主要内容 -->
+  <div class="content">
+
+    <!-- 第一段：背景说明 -->
+    <section class="section">
+      <h2>一条线索的起点</h2>
+      <p>
+        在整理日常浏览记录的时候，经常会发现一些反复出现的关键词，<strong>欧博</strong>就是其中之一。它不是某个突然爆火的标签，更像是一条慢慢浮出水面的线索——出现在若干资料、用户讨论以及平台页面里。我把它单独拎出来，作为一期索引专题，纯粹出于信息梳理的习惯。
+      </p>
+      <p>
+        没有立场，没有推广，只是觉得“既然它反复出现，就值得被整理一下”。如果你也碰巧对这个词有印象，或者想看看它到底指向什么，这篇页面算是一个安静的起点。
+      </p>
+    </section>
+
+    <!-- 第二段：自然介绍 —— 用卡片 + 场景 -->
+    <section class="section">
+      <h2>整理中的发现</h2>
+      <p>
+        翻看不同渠道的提及内容，<a href="https://cn-ssl-oubo.com" style="color:#3f372f; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #b7ada2;">欧博</a>往往出现在与信息检索、内容聚合相关的描述里。有些用户把它当作一种方法，另一些则将其视为某个特定平台的代称。无论如何，它都指向一种“把东西集中起来”的动作。
+      </p>
+
+      <div class="inset-card">
+        <span class="tag">索引场景</span>
+        <p>
+          一位做内容归档的朋友提到，他习惯把零散的收藏夹按主题重新打包，而<strong>欧博</strong>这个代号被他用来标记那些“需要横向对比”的资料包。没有花哨的流程，就是一个文件夹、一份清单、一条链接。<br>
+          类似的例子还有几个，共同点是：都强调可读性和可追溯性。
+        </p>
+      </div>
+
+      <p>
+        这种整理方式听起来很朴素，但对于信息过载的日常来说，恰恰是最稀缺的。与其在收藏夹里越堆越乱，不如定期挑一个主题，像做杂志专题一样——只聚焦一个词，把它周边的东西挖透。这也是我做这页的初衷。
+      </p>
+    </section>
+
+    <!-- 第三段：特点 / 延伸 + FAQ 摘要 -->
+    <section class="section">
+      <h2>特点与常见疑问</h2>
+      <p>
+        以下是从各渠道摘录的几个常见问题，以及基于现有资料整理的简要回答。不求全面，只提供一个参考框架。
+      </p>
+      <div class="faq-mini">
+        <div class="faq-item">
+          <div class="q">「欧博」是网站还是工具？</div>
+          <div class="a">多数讨论里它被当作一个入口性质的名称，具体指向取决于上下文。在索引语境下，更接近一个资源汇集点。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">资料整理需要什么门槛？</div>
+          <div class="a">不需要特别技能。保持好奇、及时记录、定期回顾，就能从碎片里建立自己的索引。别人叫它欧博，你叫它档案夹也行。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">这页会持续更新吗？</div>
+          <div class="a">视资料收集情况而定。目前摘录的内容来自公开讨论与个人笔记，未来如有新线索会以附录形式补充。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">怎么理解「索引专题」？</div>
+          <div class="a">每一期只围绕一个关键词，整理它背后的资料、场景和提及方式。不深挖定义，只呈现脉络。欧博是第一期。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 嵌入链接的自然句子 -->
+    <div style="margin: 2rem 0 1.5rem; text-align: left;">
+      <div class="link-sentence">
+        如果你对这条线索感兴趣，可以前往 <a href="https://cn-ssl-oubo.com">欧博</a> 看看原始的索引内容。那里保留了更完整的整理结构。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <footer class="footer-note">
+    <p>索引专题 · 第 01 期 &nbsp;·&nbsp; 文字资料整理于公开内容</p>
+    <p style="margin-top: 0.4rem;">
+      本页仅作信息汇编，所有引用均保留原始出处。如需回溯或补充，可访问
+      <a href="https://cn-ssl-oubo.com">欧博</a>。
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
