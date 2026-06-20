@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识库 · 欧博</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f6f3ef;
+            color: #2d2a27;
+            font-family: "Noto Serif SC", "Source Han Serif CN", "Songti SC", Georgia, "Times New Roman", serif;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 880px;
+            width: 100%;
+            background-color: #fcfaf7;
+            padding: 2.8rem 2.5rem 3.2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1.2rem 1rem; }
+            .page { padding: 1.8rem 1.2rem; }
+        }
+
+        /* 目录感 header */
+        .masthead {
+            border-bottom: 1px solid #dad5ce;
+            padding-bottom: 1.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .masthead .title-group {
+            display: flex;
+            gap: 1.2rem;
+            align-items: baseline;
+        }
+
+        .masthead h1 {
+            font-weight: 450;
+            font-size: 1.9rem;
+            letter-spacing: 0.02em;
+            color: #3b3530;
+        }
+
+        .masthead .badge {
+            background: #e9e2da;
+            color: #4f453e;
+            font-size: 0.7rem;
+            font-weight: 400;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            font-family: "Inter", system-ui, sans-serif;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-hint {
+            font-size: 0.9rem;
+            color: #7b7068;
+            background: #efe9e2;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-family: system-ui, sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        /* 说明区——再次访问的上下文 */
+        .context-note {
+            background: #f2ede7;
+            padding: 1.4rem 1.8rem;
+            border-radius: 16px;
+            margin-bottom: 2.2rem;
+            border-left: 4px solid #b5a79c;
+            font-size: 0.98rem;
+        }
+
+        .context-note p {
+            margin-bottom: 0.5rem;
+        }
+
+        .context-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .context-note strong {
+            font-weight: 550;
+            color: #403732;
+        }
+
+        .context-note a {
+            color: #5e4e42;
+            text-decoration: underline;
+            text-underline-offset: 0.1em;
+            transition: background 0.1s;
+        }
+
+        .context-note a:hover {
+            background: #dfd5cc;
+            text-decoration: none;
+        }
+
+        /* 目录式布局: 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+        }
+
+        .card {
+            background: #f9f5f0;
+            border-radius: 18px;
+            padding: 1.6rem 1.6rem 1.8rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            border: 1px solid #eae3db;
+        }
+
+        .card h3 {
+            font-size: 1.08rem;
+            font-weight: 500;
+            color: #4f423b;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h3::before {
+            content: "—";
+            color: #b5a293;
+            font-weight: 300;
+            margin-right: 0.2rem;
+        }
+
+        .card p, .card ul {
+            font-size: 0.95rem;
+            color: #433d38;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #a08f82;
+            font-weight: bold;
+        }
+
+        .card a {
+            color: #5b4b3f;
+            text-decoration: underline;
+            text-underline-offset: 0.08em;
+        }
+
+        .card a:hover {
+            background: #e3d9cf;
+        }
+
+        /* 提示区 —— 引用框 */
+        .tip-box {
+            background: #f0eae3;
+            padding: 1.5rem 2rem;
+            border-radius: 24px;
+            margin: 2rem 0 1.5rem;
+            font-style: normal;
+            border: 1px solid #ddd5cb;
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6);
+        }
+
+        .tip-box blockquote {
+            border-left: 3px solid #b9aa9c;
+            padding-left: 1.2rem;
+            font-size: 0.96rem;
+            color: #3d3731;
+            margin: 0.5rem 0;
+        }
+
+        .tip-box blockquote p {
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box .attribution {
+            margin-top: 0.6rem;
+            font-size: 0.88rem;
+            color: #6f645b;
+            text-align: right;
+            font-style: normal;
+            letter-spacing: 0.02em;
+        }
+
+        /* 相关信息区 */
+        .info-section {
+            border-top: 1px solid #ddd7cf;
+            padding-top: 1.8rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+        }
+
+        .info-item {
+            flex: 1 1 180px;
+        }
+
+        .info-item h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: #7c6f64;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            font-family: system-ui, sans-serif;
+        }
+
+        .info-item p, .info-item a {
+            font-size: 0.95rem;
+            color: #3d362f;
+        }
+
+        .info-item a {
+            color: #5e4e42;
+            text-decoration: underline;
+            text-underline-offset: 0.1em;
+        }
+
+        .info-item a:hover {
+            background: #e3d9cf;
+        }
+
+        /* FAQ 摘要小段落 (嵌入在信息区下) */
+        .faq-digest {
+            margin-top: 2.2rem;
+            background: #f6f1eb;
+            padding: 1.2rem 1.6rem;
+            border-radius: 20px;
+            font-size: 0.94rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 2rem;
+        }
+
+        .faq-digest dt {
+            font-weight: 500;
+            color: #4d403a;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-digest dd {
+            color: #5d534b;
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-digest a {
+            color: #5b4b3f;
+            text-decoration: underline;
+            text-underline-offset: 0.08em;
+        }
+
+        .faq-digest a:hover {
+            background: #dfd3c8;
+        }
+
+        /* 静默脚注 */
+        .colophon {
+            margin-top: 2.8rem;
+            font-size: 0.78rem;
+            color: #9b8e83;
+            text-align: center;
+            border-top: 1px solid #e3dbd3;
+            padding-top: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px dashed #dcd3ca;
+            margin: 1.8rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 标题行 / 目录感 -->
+    <div class="masthead">
+        <div class="title-group">
+            <h1>欧博 · 知识库</h1>
+            <span class="badge">索引</span>
+        </div>
+        <span class="nav-hint">再次访问 · 存档</span>
+    </div>
+
+    <!-- 说明区：从再次访问的角度切入 -->
+    <div class="context-note">
+        <p>有些站点来过一次便消失在浏览记录里，而有一些地方值得你重新打开。对 <strong>欧博</strong> 来说，持续更新的内容与逐渐沉淀的知识条目，让每一次回访都能看到新的碎片，也找到旧的参照。</p>
+        <p>如果你此前已经浏览过 <a href="https://now-oubo.com">欧博</a>，应当会留意到它并不追求短促的点击，而是更倾向于让访问者按自己的节奏翻阅。这里的素材、笔记与关联条目并不追求全覆盖，但每次回来，总有些未被梳理的角落慢慢变得清晰。</p>
+    </div>
+
+    <!-- 卡片网格：目录感布局 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>收藏夹与回访</h3>
+            <p>书签里如果还没有一个固定的位置，可以试试把 <a href="https://now-oubo.com">欧博</a> 放进去。很多内容只有回头再看时，才会发现之前忽略的衔接。站内没有强推送，但新近补充的段落会自然地出现在原有页面中。</p>
+        </div>
+        <div class="card">
+            <h3>持续关注的线索</h3>
+            <ul>
+                <li>不定期更新补充性注释与背景条目</li>
+                <li>已有页面会做关联修订，不另开重复条目</li>
+                <li>倾向于保留早期版本的部分叙述，形成对比</li>
+                <li>无邮件订阅，但有安静的存档页面</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>内容倾向</h3>
+            <p>笔记式知识块、非虚构类片段、术语简释以及若干松散关联的引用。不追赶热点，但会回应一些长久的问题。整体密度不高，适合细读或跳读。</p>
+        </div>
+        <div class="card">
+            <h3>使用场景</h3>
+            <p>查找某个概念的前后文、对比不同时期的表述、或者单纯在阅读间隙随意点开一页。——这些都是站内常见的浏览方式。</p>
+        </div>
+    </div>
+
+    <!-- 提示区：带引用感的提示框 -->
+    <div class="tip-box">
+        <blockquote>
+            <p>“有时候我们需要的不是一个入口，而是一个可以反复回来的坐标。欧博不是那种让你一次性‘刷完’的站点，它更像一个缓慢生长的笔记本，每次打开都有一点不同。”</p>
+        </blockquote>
+        <div class="attribution">—— 来自站内一篇旧笔记的页脚</div>
+        <blockquote style="margin-top:0.8rem; border-left-color: #ccbfb2;">
+            <p>如果你上一次访问已经是三个月前，那么现在至少有三处细节已经更新了。重新看一看，或许能发现新的联系。</p>
+        </blockquote>
+    </div>
+
+    <!-- 相关信息区（结构化的信息） -->
+    <div class="info-section">
+        <div class="info-item">
+            <h4>更新节奏</h4>
+            <p>非固定周期，每月数次的增量修订。主要改动会在页面底部以简注形式标注。</p>
+        </div>
+        <div class="info-item">
+            <h4>引用说明</h4>
+            <p>站内内容可自由引用，但请保留原始上下文。引用时建议标注<a href="https://now-oubo.com">欧博</a>作为来源。</p>
+        </div>
+        <div class="info-item">
+            <h4>关联站点</h4>
+            <p>无。目前所有公开内容均聚合在 now-oubo.com 之下。</p>
+        </div>
+        <div class="info-item">
+            <h4>历史存档</h4>
+            <p>部分早期页面可以通过在 URL 后添加 <code>?v=old</code> 查看存档版本（实验性）。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-digest">
+        <dl>
+            <dt>是否需要登录或注册？</dt>
+            <dd>不需要。全部内容公开可读，无用户系统。</dd>
+            <dt>内容是否会删除？</dt>
+            <dd>极少删除，更多的是修订与补充。删除前会有至少三十天的保留期。</dd>
+            <dt>怎样确认自己看到的是最新版？</dt>
+            <dd>每个页面底部有一行修订日期。如果你在收藏夹里保存的是旧链接，指向的依然是同一个页面，但内容可能已经不同。</dd>
+        </dl>
+    </div>
+
+    <hr>
+
+    <!-- 一个小型引用块，作为收束 -->
+    <p style="font-size:0.92rem; color:#5a4e46; max-width:90%; margin:0 auto; text-align:center; font-style:italic;">
+        “站点像一条缓坡，没有陡峭的入口，也不设出口。你可以在任何地方停下来，也可以在几周后从同样的地方继续。”
+    </p>
+
+    <!-- 脚注 -->
+    <div class="colophon">
+        <span>知识库入口 · 上一次页面结构更新于2025年 · 内容持续积累中</span>
+    </div>
+
+</div>
+</body>
+</html>
